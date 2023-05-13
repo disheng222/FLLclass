@@ -1,32 +1,51 @@
 '''
 This code is used to calibrate the direction based on black lines
 '''
-
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
 from math import *
 
 hub = PrimeHub()
-left_wheel = Motor('B')
-right_wheel = Motor('A')
-color_sensor_right = ColorSensor('E')
-color_sensor_left = ColorSensor('F')
+colorE = ColorSensor('F')
+colorF = ColorSensor('E')
 
-hub.light_matrix.show_image('HAPPY')
+motorA = Motor('A')
+motorB = Motor('B')
 
-left_wheel.start(-20)
-right_wheel.start(20)
+motorA.start(speed=10)
+motorB.start(speed=-10)
 
-while True:
-    color1 = color_sensor_right.get_color()
-    color2 = color_sensor_left.get_color()
+foundA = False
+foundB = False
 
-    if color1 == 'black':
-        left_wheel.stop()
-        if color_sensor_left.get_color() == 'black':
-            right_wheel.start(20)
+i = 0
+while (not foundA or not foundB):
+    print(i)
+    if (colorE.get_color()=="black"):
+        motorB.stop()
+        print('foundB')
+        foundB = True
+    if (colorF.get_color()=="black"):
+        motorA.stop()
+        print('foundA')
+        foundA = True
+    i=i+1
+print('out....')
 
-    if color2 == 'black':
-        right_wheel.stop()
-        if color_sensor_right.get_color() == 'black':
-            left_wheel.start(-20)
+foundA = False
+foundB = False
+motorA.start(speed=10)
+motorB.start(speed=-10)
+wait_for_seconds(1)
+i = 0
+while (not foundA or not foundB):
+    print(i)
+    if (colorE.get_color()=="black"):
+        motorB.stop()
+        print('foundB')
+        foundB = True
+    if (colorF.get_color()=="black"):
+        motorA.stop()
+        print('foundA')
+        foundA = True
+    i=i+1
