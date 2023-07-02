@@ -12,7 +12,7 @@ def right_turn87(motor_pair, hub):
 def right_turn86(motor_pair, hub):
     motor_pair.start_tank(15,-15)
     while True:
-        if(hub.motion_sensor.get_yaw_angle() > 87):
+        if(hub.motion_sensor.get_yaw_angle() > 86):
             break
     motor_pair.stop()
 
