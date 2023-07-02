@@ -17,10 +17,6 @@ def right_turn86(motor_pair, hub):
     motor_pair.stop()
 
 hub = PrimeHub()
-
-hub.light_matrix.show_image('HAPPY')
-
-hub = PrimeHub()
 hub.motion_sensor.reset_yaw_angle()
 motor_pair = MotorPair('A','B')
 
