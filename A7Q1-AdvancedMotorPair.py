@@ -46,7 +46,7 @@ class AdvancedMotorPair(MotorPair):
         super().set_default_speed(10)
         steering = 0
         while(True):
-            if(timer.now >= seconds):
+            if(timer.now() >= seconds):
                 super().stop()
                 break;
             steering = 2*(colorSensor.get_reflected_light()-55)
